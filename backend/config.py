@@ -12,13 +12,26 @@ class Config:
     class Explorer:
         class Seeds:
             hashtags = ["covid", 
-                        "coronavirus", 
                         "vaccine", 
                         "lockdown", 
                         "pandemic",
                         "donaltrump",
                         "joebiden",
                         "election",
-                        "covidvaccine",
                         "putin",
                         ]
+        filter = [
+            "fyp",
+            "foryou",
+            "viral",
+            "comedy",
+            "funny",
+            "tiktok",
+            "trending",
+            "4u",
+            "pov",
+            "prank",
+            "dance",
+            "humor",
+            "crazy",
+        ]

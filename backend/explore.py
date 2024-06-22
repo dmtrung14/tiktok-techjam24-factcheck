@@ -14,6 +14,7 @@ class Explorer:
         self.suppress_resource_load_types = Config.Scraper.suppress_resource_load_types
         self.hashtags = defaultdict(int)
         self.hashtags_seeds = Config.Explorer.Seeds.hashtags
+        self.filter = Config.Explorer.filter
     
     async def get_hashtags(self, depth = 5):
         current_depth = 0
@@ -26,7 +27,7 @@ class Explorer:
                 async with TikTokApi() as api:
                     await api.create_sessions(ms_tokens=[self.ms_token], 
                                             num_sessions=1, 
-                                            sleep_after=3,
+                                            sleep_after=1,
                                             headless=False,
                                             suppress_resource_load_types=self.suppress_resource_load_types,
                                             browser='firefox'
@@ -57,9 +58,10 @@ class Explorer:
     async def expand_frontier(self, tag_name: str, number_video: int):
         async with TikTokApi() as api:
             await api.create_sessions(ms_tokens=[None], 
-                                      num_sessions=1, 
-                                      sleep_after=3, 
+                                      num_sessions=2, 
+                                      sleep_after=1, 
                                       headless=False,
+                                      suppress_resource_load_types=self.suppress_resource_load_types,
                                     #   browser='firefox'
             )
             tag = api.hashtag(name=tag_name)
@@ -68,11 +70,19 @@ class Explorer:
             async for video in tag.videos(count=30):
                 count += 1
                 video_dict = video.as_dict
-                for tag in video_dict['challenges']:
-                    new_tags.add(tag['title'])
+                for new_tag_title in video_dict['challenges']:
+                    new_tag = api.hashtag(name=new_tag_title['title'])
+                    new_tag_info = await new_tag.info()
+                    if any(f in new_tag_title['title'] for f in self.filter):
+                        continue
+                    if 'challengeInfo' not in new_tag_info or int(new_tag_info['challengeInfo']['statsV2']['videoCount']) < 1e5 or int(new_tag_info['challengeInfo']['statsV2']['viewCount']) < 1e11:
+                        continue
+                    # print(f"#{tag['title']}: {new_tag_info['challengeInfo']['statsV2']['videoCount']} videos, {new_tag_info['challengeInfo']['statsV2']['viewCount']} views")
+                    new_tags.add(new_tag_title['title'])
                 if count >= number_video:
                     break
             return list(new_tags)
+        
 
 if __name__ == "__main__":
     explorer = Explorer()
