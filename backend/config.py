@@ -11,11 +11,11 @@ class Config:
         suppress_resource_load_types = ["image", "media", "font", "stylesheet"]
         with open('data/hashtags.json') as file:
             hashtags = json.load(file)
-            
+
     class Explorer:
         class Seeds:
             hashtags = ["covid",  "vaccine", "lockdown", "pandemic",
-                        "donaltrump","joebiden","election","putin",
+                        "donaldtrump","joebiden","election","putin",
                         ]
         filter = [
             "fyp", "foryou", "viral", "comedy", "tiktok",
@@ -45,9 +45,26 @@ class Config:
                 'covid', 'vaccine',
                 'donald trump', 'joe biden', 'us election',
                 'america', 'putin', 'russia', 'us vs russia',
-                'ukraine', 'lgbt'
+                'ukraine', 'lgbt', 'euro', 'copa america',
             ]
+            topics = [
+                'politics', 'president', 'public health', 
+                'economics','sports', 'science', 'technology',
+                'human rights', 
+            ]
+            sentiments = ['positive', 'negative', 'neutral']
+
+            with open('data/videos.json') as file:
+                videos = json.load(file)
+            with open('data/reduced_hashtags.json') as file:
+                hashtags = json.load(file)
 
     class Train:
-        pass
+        aggregate_data = False # just load currently available data
+        epochs = 10
+        batch_size = 8
+        learning_rate = 1e-5
+        max_length = 512
+        model = 'joeddav/bart-large-mnli-yahoo-answers'
+
         
