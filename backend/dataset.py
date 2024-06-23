@@ -94,7 +94,9 @@ class DataBuilder:
         return  topics + sentiments
         
     def preprocess_data(self):
+        count = 0
         for video_id in self.videos:
+            print(f'Processing video {count} of {len(self.videos)}')
             video = self.videos[video_id]
             text = self.extract_text(video['desc'])
             # vectorize the description by topics and semantics
@@ -106,7 +108,7 @@ class DataBuilder:
 
             # add the item to the data dictionary
             self.data_dict[video_id] = desc_vector + challenge_vector + tag_vector 
-
+            count += 1
     def label_data(self):
         pass
 
