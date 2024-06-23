@@ -18,6 +18,7 @@ class DataBuilder:
         self.data_dict = dict()
         self.videos = self.config.videos
         self.labels = self.config.labels
+        self.hashtags = self.config.hashtags
 
     def extract_text(self, text):
         # Remove hashtags
@@ -107,15 +108,20 @@ class DataBuilder:
             # one hot encode the tags
             tag_vector = self._one_hot_tags(video)
 
+            print(len(desc_vector), len(challenge_vector), len(tag_vector))
+
             # add the item to the data dictionary
             self.data_dict[video_id] = desc_vector + challenge_vector + tag_vector 
             count += 1
+            self.save_data()
+
+
     def label_data(self):
         pass
 
     def save_data(self):
         with open('data/data.json', 'w') as f:
-                    json.dump(self.data_dict, f, indent=4)
+            json.dump(self.data_dict, f, indent=4)
         
 
     def build_data(self):
