@@ -2,6 +2,7 @@ import json
 from TikTokApi import TikTokApi
 from transformers import pipeline
 from config import Config
+import torch
 import pandas as pd
 import numpy as np
 import csv
@@ -52,7 +53,7 @@ class DataBuilder:
         return new_labels
     
     def vectorize_desc(self, text):
-        classifier = pipeline(self.task, model= self.model)
+        classifier = pipeline(self.task, model= self.model, device=0 if torch.cuda.is_available() else -1)
         hypothesis_template = 'This text is about {}.' # the template used in this demo
         sequence = [text]
         labels = self.config.topics
@@ -73,7 +74,7 @@ class DataBuilder:
         return  topics + sentiments
         
     def vectorize_challenges(self, challenges):
-        classifier = pipeline(self.task, model= self.model)
+        classifier = pipeline(self.task, model= self.model, device=0 if torch.cuda.is_available() else -1)
         hypothesis_template = 'This text is about {}.'
         sequence = challenges
         labels = self.config.topics
