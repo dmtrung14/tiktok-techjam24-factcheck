@@ -1,4 +1,5 @@
 import os
+import json
 
 
 class Config:
@@ -8,7 +9,9 @@ class Config:
             'outtmpl': '%(uploader)s_%(id)s.%(ext)s',
         }
         suppress_resource_load_types = ["image", "media", "font", "stylesheet"]
-        
+        with open('data/hashtags.json') as file:
+            hashtags = json.load(file)
+            
     class Explorer:
         class Seeds:
             hashtags = ["covid",  "vaccine", "lockdown", "pandemic",

@@ -13,6 +13,9 @@ class DataBuilder:
     def load_data(self):
         pass
 
+
+    def preprocess_data(self):
+        pass
     def generate_prompt(self, text):
         classifier = pipeline(self.task, model= self.model)
         hypothesis_template = 'This text is about {}.' # the template used in this demo
