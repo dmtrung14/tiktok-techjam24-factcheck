@@ -35,6 +35,8 @@ class Config:
             'cosplay', 'lmao', 'lol', 'blowthisup', 'blowup','share', 
             'viralvideo', 'cleantok', "ad", "sponsored", "promotion",
             "promoted", "tiktokpartner", "partner", "tiktokad",
+            "mom", "outfit", "fnaf", 'charlidamelio', 'charli', 'dixie',
+            'wwe', 'stitch'
         ]
     
     class Dataset:

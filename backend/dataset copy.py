@@ -7,7 +7,6 @@ import pandas as pd
 import numpy as np
 import csv
 import re
-import threading
 
 
 class DataBuilder:
@@ -118,7 +117,6 @@ class DataBuilder:
             self.data_dict[video_id] = desc_vector + challenge_vector + tag_vector 
             count += 1
             self.save_data()
-            
     def label_data(self):
         pass
 

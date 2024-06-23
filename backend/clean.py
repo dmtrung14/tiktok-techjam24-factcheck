@@ -18,14 +18,14 @@ def clean_hashtags():
 def reduce_hashtags():
     with open('data/hashtags.json') as file:
         data = json.load(file)
-    threshold = data["ronaldo"]
+    threshold = 0.75
     filter = Config.Explorer.filter
 
     new_hash_tags = {
         
     }
     for key in data:
-        if data[key] < threshold or any(f in key for f in filter):
+        if data[key] < threshold or any(f in key for f in filter) or len(key) == 1:
             continue
         new_hash_tags[key] = 1
         
