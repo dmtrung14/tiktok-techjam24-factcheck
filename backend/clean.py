@@ -9,7 +9,7 @@ def clean_hashtags():
         data = json.load(file)
 
     # Remove non-alphanumeric keys
-    cleaned_data = {key: value for key, value in data.items() if re.match(r'^[a-zA-Z0-9]+$', key)}
+    cleaned_data = {key: value for key, value in data.items() if re.match(r'^[a-zA-Z0-9]+$', key) and len(key) > 1 and not any(f in key for f in Config.Explorer.filter)}
 
     # Save the modified JSON back to a file
     with open('data/hashtags.json', 'w') as file:

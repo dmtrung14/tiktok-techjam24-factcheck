@@ -42,9 +42,11 @@ class TikTokScraper:
                                       suppress_resource_load_types=self.suppress_resource_load_types)
             scraped_videos = dict()
             tag_to_video = defaultdict(list)
+            total_videos = 0
             for hashtag in self.hashtags:
                 tag = api.hashtag(name=hashtag)
-                number_video = math.ceil(max(1, 30 * (self.hashtags[hashtag] ** 2)))
+                number_video = math.ceil(max(1, 100 * (self.hashtags[hashtag] ** 1.5)))
+                total_videos += number_video
                 count = 0
                 print(f"Scraping {number_video} videos for #{hashtag}")
                 async for video in tag.videos(count = 1):
@@ -65,7 +67,7 @@ class TikTokScraper:
                         break
                 with open('data/videos.json', 'w') as f:
                     json.dump(scraped_videos, f, indent=4)
-
+            print("Successfully scraped", total_videos, "videos for top", len(self.hashtags), "hashtags.")
 
 
     async def close(self):

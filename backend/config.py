@@ -11,6 +11,14 @@ class Config:
         suppress_resource_load_types = ["image", "media", "font", "stylesheet"]
         with open('data/hashtags.json') as file:
             hashtags = json.load(file)
+            hashtags_sorted = sorted(hashtags.items(), key=lambda x: x[1], reverse=True)
+            min_score = hashtags_sorted[50][1]
+            max_score = hashtags_sorted[0][1]
+            diff = max_score - min_score
+            hashtags = dict()
+            for key, value in hashtags_sorted[:50]:
+                hashtags[key] = (value - min_score) / diff * 0.85 + 0.15
+
 
     class Explorer:
         class Seeds:
@@ -36,7 +44,9 @@ class Config:
             'viralvideo', 'cleantok', "ad", "sponsored", "promotion",
             "promoted", "tiktokpartner", "partner", "tiktokad",
             "mom", "outfit", "fnaf", 'charlidamelio', 'charli', 'dixie',
-            'wwe', 'stitch'
+            'wwe', 'stitch', 'creepy', '1m', '100k', 'rip', 'crush', 'pubg',
+            'phimhay', 'scary', 'cartoon', 'horror', 'kdrama', 'series',
+            'tips', "couple", "relationship", "love", "romance", "kiss",
         ]
     
     class Dataset:
