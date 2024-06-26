@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "946494999907",
+    "project_id": "video-uploader-18225",
+    "storage_bucket": "video-uploader-18225.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:946494999907:android:65189323d0e7c557e6d756",
+        "android_client_info": {
+          "package_name": "com.example.frontend"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJwpblH1FBzoSVF6py-mQGBifPJkfmvOk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
