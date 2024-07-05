@@ -79,4 +79,49 @@ class Config:
         max_length = 512
         model = 'joeddav/bart-large-mnli-yahoo-answers'
 
+    class Model:
+        usr_msg1 = """You are given a user utterance that contain content of a short video.
+Your task is to create a multiple choice quiz based on that content.
+Question: [the question it self]\nA)Option A\nB)Option B\nC)Option C\nD)Option D\nAnswer: [the correct answer]\n
+Generate the quiz in the language of the video.
+Are the instructions clear to you?"""
+
+        asst_msg1 = "Yes, the instructions are clear!"
+
+        usr_msg2 = """
+        Your question should have the following format:
+
+        Question: [the question it self]
+        A)Option A
+        B)Option B
+        C)Option C
+        D)Option D
+        Answer: [the correct answer]
+
+        Generate the quiz in the language of the video.
+        Are the instructions clear to you?
+        """
+
+        asst_msg2 = "Yes, I understand the instruction"
+
+        usr_msg3 = """Did you know this about World War II? World War II was one of the deadliest conflicts in human history, lasting from 1939 to 1945. Over 70 million people, or about 3% of the world’s population at the time, lost their lives. The war involved most of the world's nations, including all of the great powers, forming two opposing military alliances: the Allies and the Axis.
+        The Allies primarily included the United States, the Soviet Union, the United Kingdom, and China, while the Axis powers were led by Germany, Italy, and Japan. Major events include the invasion of Poland in 1939, which started the war, and the D-Day invasion of Normandy in 1944, which was a turning point for the Allies."""
+
+        asst_msg3 = """ 
+        Question: Which event marked the start of World War II?
+        A. The bombing of Pearl Harbor
+        B. The invasion of Poland
+        C. The D-Day invasion
+        D. The Battle of Britain
+        """
+
+        base_messages = [
+            {"role": "user", "content": usr_msg1},
+            {"role": "assistant", "content": asst_msg1},
+            {"role": "user", "content": usr_msg2},
+            {"role": "assistant", "content": asst_msg2},
+            {"role": "user", "content": usr_msg3},
+            {"role": "assistant", "content": asst_msg3},
+        ]
+
         

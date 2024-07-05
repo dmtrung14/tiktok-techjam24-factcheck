@@ -1,7 +1,7 @@
 import json
 from TikTokApi import TikTokApi
 from transformers import pipeline
-from config import Config
+from backend.config import Config
 import torch
 import pandas as pd
 import numpy as np

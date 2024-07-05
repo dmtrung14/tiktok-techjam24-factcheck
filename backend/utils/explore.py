@@ -1,6 +1,6 @@
 import time
 from TikTokApi import TikTokApi
-from config import Config
+from backend.config import Config
 from collections import defaultdict
 from transformers import pipeline
 

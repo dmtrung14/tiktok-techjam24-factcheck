@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "tiktok-factcheck",
+  "private_key_id": "6e5f637bcb8da562f4e226684f4067125bcae5c9",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC14l2E9sumR/1p\nS/aJvRy2Qj0GviGRpwyJKNvKKRx4YVSyzZw7LPnXAr2/oEFKD82utr+f0VHYSwc1\nD/6rNazlGwWL++j5gxv1IoFxxHYB+k+ysnDz8/9ZzusByIefOf7sldQeCGzvdozi\nwpOduZrXG0OV2HGy0HsijnhD9uzKcvxTzfDMci+KDZITfTqcrHCqLIxtJdPasMpC\nPKNVMizUeFU/3ljDKCItvxAIUY7tR8wSe825stI4Rql12tp10ogRQHX02RQRihoi\nuLyUiLtutculVhUYAh5UcjtlcLxyhhDogsIlx5QNGNeW2Zy3jbxSZjC7CcvkZH1W\n0DjA6SyLAgMBAAECggEABGUJTG6oIgboRRSMSuyyVmcIUXLjncDTCTdfBCX1JaV4\nZe+Y4EcobD0JN6mYGkGCfz+0JpjoqNi7Pll6FknwOQLroeO+z9SOpuAkD4snLMoP\nBerQ1twk5dcdj4f4Wu0MT0wZeXZLp4eOROZdqbhz2NG0UtkNejwWVZHqrv223/dX\nutYmmw35UhcSfVmBWVQzarxkUZKInFyKcAXik9/IcZFWPp+o4mkCSwZc4sRYtRkQ\nNmJoJ0KQ/7fzES6IBo8jsDffCGu/wTYcD56WtwqLnqS7GyZD5aQFqtR6gb1soBoI\nXd4gRXWOsfosI+ZXDhXFBx9dNJHfU/aCzk025B+19QKBgQD79cnfql9yjTeI8hDT\nRkB8rdf5FiBCMkbS3dMtLNMvNXBp8xsPGTJmC4/LPsvjeUKr/aZ7NBzhQa/QmE/R\n9imA65NZ9nw7HBozVfkB1dwYIgkgck9QJAXaxDnYbH19k9dLleyYDFN0A0xK2tjM\nvK/V5/be7f+MEj0HrJubvLK5/wKBgQC4zPBaVcs4fbO/075BiMXhkNpD95TGyFGW\nTP+3BnGH855MyqLfRo1D2QFJ8Ib3m4D+OHYs0436Szr5VtvAn3tl04omDPKvQUfs\n/Ki3+bi8ppXqBsAc/v3pYIE+ey8qQMoETt6RoivBDZ6eBWc8Y9Ew4YUsJKatx/7B\nwnPLR4fVdQKBgQCHLpZDFIvlT/MN3KI+WKDcxADuOXrRSVxKYo2c3UHpQEix76cC\n8MfjjCx4JZcK0tJ8qLibvZgJG08TIcUhp2sZKkuCpwZ8SFWeWXAiFfXiVNCEwg/f\ntZQWjdVjUsH5kEqg2S15XpOf2O0j9EsBffLxV2VSsmq7YkWwSmGqqxFRTQKBgHFX\naHbPNdPQ7OTTNlY1T8BXujaDa6E7jSaU1SVo80rBtS49/gTY3Z1mQ+8YcX79xfCl\nqn01x1diuqnghukuJ129j3Zk7Jdmf3mvQL+NjqtNtJaTS1K9Zfez87DhlnzgvcZE\npSdHAnTmKImcoMOeKNhFCQuY8w2UowAthh2AIqRdAoGADGlZ4NQpT6BRCeDSBDg2\neJ8k6IcasRDb384hXA9ebNNPG5EPcRyuhbR21BDCJccI+7qQ37uG19VRT4h9IlnS\nsUpE0gpnnEMPS+hfiLxeR67gcvmXyTNiP8q6w6gkBVqrxFoZctg9AB39iKXzb1LK\nafufEeocEmIQPKuB4mrFe00=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-2h4ci@tiktok-factcheck.iam.gserviceaccount.com",
+  "client_id": "103308795436328570535",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-2h4ci%40tiktok-factcheck.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

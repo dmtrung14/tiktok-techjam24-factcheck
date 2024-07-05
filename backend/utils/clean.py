@@ -1,4 +1,4 @@
-from config import Config
+from backend.config import Config
 from transformers import pipeline
 import json
 import re

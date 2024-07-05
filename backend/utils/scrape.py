@@ -1,7 +1,7 @@
 import math
 from TikTokApi import TikTokApi
 from yt_dlp import YoutubeDL
-from config import Config
+from backend.config import Config
 from collections import defaultdict
 import asyncio
 import json
