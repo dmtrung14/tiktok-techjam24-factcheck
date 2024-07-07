@@ -1,5 +1,5 @@
-from config import Config
-from explore import Explorer
-from dataset import DataBuilder
-from scrape import TikTokScraper
+from .config import Config
+from .utils.explore import Explorer
+from .utils.dataset import DataBuilder
+from .utils.scrape import TikTokScraper
 
