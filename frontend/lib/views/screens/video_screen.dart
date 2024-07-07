@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:frontend/constants.dart';
 import 'package:frontend/controllers/video_controller.dart';
 import 'package:frontend/views/screens/comment_screen.dart';
+import 'package:frontend/views/screens/quiz_screen.dart';
 import 'package:frontend/views/widgets/circle_animation.dart';
 import 'package:frontend/views/widgets/video_player_item.dart';
 import 'package:video_player/video_player.dart';
@@ -201,6 +202,24 @@ class VideoScreen extends StatelessWidget {
                                         color: Colors.white,
                                       ),
                                     )
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    InkWell(
+                                      onTap: () => Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) => QuizScreen(
+                                            id: data.id,
+                                          ),
+                                        ),
+                                      ),
+                                      child: const Icon(
+                                        Icons.quiz,
+                                        size: 40,
+                                        color: Colors.white,
+                                      ),
+                                    ),
                                   ],
                                 ),
                                 Column(
