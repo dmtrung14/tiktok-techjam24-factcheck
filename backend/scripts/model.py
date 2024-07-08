@@ -22,7 +22,7 @@ class Model:
     
     def quiz(self, text):
         messages = self.base_messages.copy()
-        messages.append({"role": "user", "content": f"Generate one multiple choice question with 4 options A,B,C,D for the following prompt: {text['text']}\nDO NOT GIVE AN ANSWER"})
+        messages.append({"role": "user", "content": f"Generate one multiple choice question beginning with Question:; it must have 4 options A),B),C),D) for the following prompt: {text['text']}\nDO NOT GIVE AN ANSWER"})
         response = self.pipe(messages)
         question = response[0]['generated_text'][-1]['content']
         messages.append({"role": "assistant", "content": question})
@@ -32,14 +32,13 @@ class Model:
         return question, result
     
     def eval(self, video_file = '../test/asset/download.mp4', audio_file = '../test/asset/extracted_audio.wav'):
-        # video_file = "/content/download.mp4"
-        # audio_file = "/content/extracted_audio.wav"
         self.extract_audio(video_file, audio_file)
         transcription = self.transcribe_audio(audio_file)
-        your_quiz =self.quiz(transcription)
+        question, answer = self.quiz(transcription)
 
         return {
-            "quiz": your_quiz
+            "question": question,
+            "answer": answer
         }
 
 if __name__ == "__main__":

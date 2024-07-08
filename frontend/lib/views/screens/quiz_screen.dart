@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/models/quiz.dart';
 import 'package:get/get.dart';
 import 'package:frontend/constants.dart';
-import 'package:frontend/controllers/comment_controller.dart';
+import 'package:frontend/controllers/quiz_controller.dart';
 import 'package:timeago/timeago.dart' as tago;
 
 class QuizScreen extends StatelessWidget {
@@ -11,133 +12,58 @@ class QuizScreen extends StatelessWidget {
     required this.id,
   }) : super(key: key);
 
-  final TextEditingController _commentController = TextEditingController();
-  CommentController commentController = Get.put(CommentController());
+  final QuizController quizController = Get.put(QuizController());
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    commentController.updatePostId(id);
+    quizController.updatePostId(id);
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: SizedBox(
-          width: size.width,
-          height: size.height,
+      appBar: AppBar(
+        title: Text('Quiz App'),
+      ),
+      body: Obx(() {
+        if (quizController.quiz == null) {
+          return Center(child: CircularProgressIndicator());
+        }
+
+        Quiz quiz = quizController.quiz!;
+
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
           child: Column(
-            children: [
-              Expanded(
-                child: Obx(() {
-                  return ListView.builder(
-                      itemCount: commentController.comments.length,
-                      itemBuilder: (context, index) {
-                        final comment = commentController.comments[index];
-                        return ListTile(
-                          leading: CircleAvatar(
-                            backgroundColor: Colors.black,
-                            backgroundImage: NetworkImage(comment.profilePhoto),
-                          ),
-                          title: Row(
-                            children: [
-                              Text(
-                                "${comment.username}  ",
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.red,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              Text(
-                                comment.comment,
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
-                          ),
-                          subtitle: Row(
-                            children: [
-                              Text(
-                                tago.format(
-                                  comment.datePublished.toDate(),
-                                ),
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                '${comment.likes.length} likes',
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.white,
-                                ),
-                              )
-                            ],
-                          ),
-                          trailing: InkWell(
-                            onTap: () =>
-                                commentController.likeComment(comment.id),
-                            child: Icon(
-                              Icons.favorite,
-                              size: 25,
-                              color: comment.likes
-                                      .contains(authController.user.uid)
-                                  ? Colors.red
-                                  : Colors.white,
-                            ),
-                          ),
-                        );
-                      });
-                }),
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                quiz.question,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              const Divider(),
-              ListTile(
-                title: TextFormField(
-                  controller: _commentController,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
-                  ),
-                  decoration: const InputDecoration(
-                    labelText: 'Comment',
-                    labelStyle: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                    ),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.red,
-                      ),
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.red,
-                      ),
-                    ),
-                  ),
-                ),
-                trailing: TextButton(
-                  onPressed: () =>
-                      commentController.postComment(_commentController.text),
-                  child: const Text(
-                    'Send',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
+              SizedBox(height: 20),
+              ...quiz.options.keys.map((key) => RadioListTile<String>(
+                    title: Text(quiz.options[key]!),
+                    value: key,
+                    groupValue: quizController.selectedOption,
+                    onChanged: (value) {
+                      if (value != null) {
+                        quizController.checkAnswer(value, quiz.answer);
+                      }
+                    },
+                  )),
+              SizedBox(height: 20),
+              Obx(() => Text(
+                    quizController.feedbackMessage,
+                    style: TextStyle(fontSize: 16, color: Colors.redAccent),
+                  )),
             ],
           ),
-        ),
+        );
+      }),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          quizController.updatePostId('your_video_id_here');
+        },
+        child: Icon(Icons.refresh),
       ),
     );
   }
