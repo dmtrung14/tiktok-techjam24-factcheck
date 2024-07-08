@@ -18,6 +18,8 @@ We used the [Qwen2](https://huggingface.co/docs/transformers/en/model_doc/qwen2)
 
 Our application is developed using _Flutter_ and made available on iOS 14+ operations systems, with a _fastapi_ backend. Our model is preloaded, and generated quizzes are also cached in a _Firestore (Firebase)_ database to enable quick access for other users. 
 
+We used [TikTok Display API](https://developers.tiktok.com/doc/display-api-overview/) to get user information. This information is later used to cache responses and record answered quizzes on our database.
+
 ## Challenges we ran into
 - **Ethics of AI**: How to tune the model to fit with the ethical values of AI: accuracy of information, denial of service for prohibited contents, and respect for users' privacy.
 - **Data & Privacy**: Collecting users' preferences without encroaching on their privacy.
