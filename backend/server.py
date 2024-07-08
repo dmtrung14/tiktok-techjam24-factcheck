@@ -44,21 +44,30 @@ async def get_quiz(video_id):
 async def save_quiz(video_id, quiz):
     doc_ref = db.collection('videos').document(video_id)
     doc_ref.set(quiz)
-
-
+    return {"status": "success"}
 
 def postprocessing(q, a):
-    for line in q.splitlines():
+    for idx, line in enumerate(q.splitlines()):
         if line.startswith("Question:"):
             question = line.split(":")[1].strip()
+        elif idx == 0:
+            question = line.strip()
         elif line.startswith("A)"):
             A = line.split(")")[1].strip()
+        elif line.startswith("A."):
+            A = line.split(".")[1].strip()
         elif line.startswith("B)"):
             B = line.split(")")[1].strip()
+        elif line.startswith("B."):
+            B = line.split(".")[1].strip()
         elif line.startswith("C)"):
             C = line.split(")")[1].strip()
+        elif line.startswith("C."):
+            C = line.split(".")[1].strip()
         elif line.startswith("D)"):
             D = line. split(")")[1].strip()
+        elif line.startswith("D."):
+            D = line.split(".")[1].strip()
     return {
         "question":  question,
         "A": A,
