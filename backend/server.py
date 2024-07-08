@@ -29,7 +29,10 @@ async def get_quiz(video: UploadFile = File(...)):
         with open(temp_video_path, "wb") as buffer:
             buffer.write(await video.read())
         
-        q, a = model.eval(video_file=temp_video_path, audio_file=temp_audio_path)
+        quiz_data = model.eval(video_file=temp_video_path, audio_file=temp_audio_path)
+        q = quiz_data["question"]
+        a =  quiz_data["answer"]
+        
     # Return the results
     result = postprocessing(q, a)
     return result
