@@ -61,7 +61,7 @@ class QuizScreen extends StatelessWidget {
       }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          quizController.updatePostId('your_video_id_here');
+          quizController.updatePostId(id);
         },
         child: Icon(Icons.refresh),
       ),

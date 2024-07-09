@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:frontend/constants.dart';
 import 'package:frontend/models/quiz.dart';
-import 'package:http/http.dart' as http;
+import 'package:frontend/services/quiz_service.dart';
 
 class QuizController extends GetxController {
   final Rx<Quiz?> _quiz = Rx<Quiz?>(null);
@@ -20,15 +20,34 @@ class QuizController extends GetxController {
     getQuiz();
   }
 
-  getQuiz() async {
-    DocumentSnapshot doc = await FirebaseFirestore.instance
-        .collection('quizzes')
-        .doc(_postId)
-        .get();
-
-    if (doc.exists) {
-      _quiz.value = Quiz.fromSnap(doc);
+  postQuizToDB() async {
+    try {
+      QuizService quizService = QuizService();
+      await quizService.postQuiz(_postId);
+    } catch (e) {
+      // Handle the error here
+      print('Error posting quiz to DB: $e');
+      return e;
     }
+
+  }
+
+  getQuiz() async {
+      try {
+          postQuizToDB();
+          DocumentSnapshot doc = await FirebaseFirestore.instance
+              .collection('quizzes')
+              .doc(_postId)
+              .get();
+  
+          if (doc.exists) {
+              _quiz.value = Quiz.fromSnap(doc);
+          }
+      } catch (e) {
+          // Handle the error here
+          print('Error getting quiz: $e');
+          return e;
+      }
   }
 
   void checkAnswer(String answer, String correctAnswer) {

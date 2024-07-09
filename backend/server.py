@@ -11,7 +11,7 @@ import uuid
 
 app = FastAPI()
 model = Model()
-cred = credentials.Certificate("firebase.json")
+cred = credentials.Certificate("../mainKey.json")
 firebase_admin.initialize_app(cred)
 
 db = firestore.client()
@@ -34,18 +34,18 @@ async def get_quiz(video: UploadFile = File(...)):
         a =  quiz_data["answer"]
         
     # Return the results
-    result = postprocessing(q, a)
+    result = postprocessing(q, a) 
     return result
 
 @app.get("/quizme")
 async def get_quiz(video_id):
-    doc_ref = db.collection('videos').document(video_id)
+    doc_ref = db.collection('quizzes').document(video_id)
     doc = doc_ref.get()
     return doc.to_dict()
 
 @app.post("/savequiz")
 async def save_quiz(video_id, quiz):
-    doc_ref = db.collection('videos').document(video_id)
+    doc_ref = db.collection('quizzes').document(video_id)
     doc_ref.set(quiz)
     return {"status": "success"}
 
